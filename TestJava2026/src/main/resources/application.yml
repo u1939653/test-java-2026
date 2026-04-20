@@ -1,0 +1,8 @@
+info:
+  description: Test Java 2026 API (Resources - /application.yml)
+  version: 0.0.1
+########################
+server:
+  servlet:
+    context-path: /test-java-2026/api
+  port: 8080
