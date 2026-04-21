@@ -11,3 +11,5 @@
 # Version 0.0.2
 ## Phase 3 - Folder and file structure
 - Domain: created Price entity and empty Service
+- Adapter: created Prices Controller with GET endpoint
+- Adapter: created Price entity and empty repository
