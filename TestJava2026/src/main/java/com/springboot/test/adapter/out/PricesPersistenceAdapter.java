@@ -1,0 +1,40 @@
+package com.springboot.test.adapter.out;
+
+import com.springboot.test.adapter.out.entity.PricesEntity;
+import com.springboot.test.adapter.out.repository.PricesRepository;
+import com.springboot.test.application.port.out.ReadPricesPort;
+import com.springboot.test.domain.model.CurrencyType;
+import com.springboot.test.domain.model.Prices;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Component
+public class PricesPersistenceAdapter implements ReadPricesPort {
+    private PricesRepository pricesRepository;
+
+    public PricesPersistenceAdapter(PricesRepository pricesRepository) {
+        this.pricesRepository = pricesRepository;
+    }
+
+    @Override
+    public List<Prices> findBrandProductPricesByDate(Integer brandId, Integer productId, LocalDateTime date) {
+        List<PricesEntity> pricesEntityList = this.pricesRepository.findByBrandIdAndProductIdAndDate(brandId, productId, date);
+        return pricesEntityList.stream().map(this::toDomain).toList();
+    }
+
+    private Prices toDomain( PricesEntity pricesEntity ) {
+        Prices prices = new Prices(
+            pricesEntity.getId(),
+            pricesEntity.getBrandId(),
+            pricesEntity.getProductId(),
+            pricesEntity.getStartDate(),
+            pricesEntity.getEndDate(),
+            pricesEntity.getPriority(),
+            pricesEntity.getPrice(),
+            CurrencyType.valueOf(pricesEntity.getCurrency())
+        );
+        return prices;
+    }
+}

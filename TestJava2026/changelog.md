@@ -9,7 +9,8 @@
 - Added h2 console to check contents (disabled by default)
 
 # Version 0.0.2
-## Phase 3 - Folder and file structure
+## Phase 3 - Implement GET endpoint
 - Domain: created Price entity and empty Service
 - Adapter: created Prices Controller with GET endpoint
 - Adapter: created Price entity and empty repository
+- First draft at a GET endpoint to return current price for a given brand, product and date
