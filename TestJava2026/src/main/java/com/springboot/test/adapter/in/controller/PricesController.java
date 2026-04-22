@@ -29,8 +29,9 @@ public class PricesController {
 
     @GetMapping("/prices")
     public ResponseEntity<PriceResponse> getPriceAtDate(@RequestParam Integer brandId, @RequestParam Integer productId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date ) {
-        this.logger.debug("[PricesController][getPriceAtDate] DEBUG: brandId={}, productId={}, date={}", brandId, productId, date.toString());
+        this.logger.debug("[PricesController][getPriceAtDate][DEBUG] Start: brandId={}, productId={}, date={}", brandId, productId, date.toString());
         Prices currentPrice = this.getBrandProductPriceUseCase.getBrandProductPrice(brandId, productId, date);
+        this.logger.debug("[PricesController][getPriceAtDate][DEBUG] Price found: {}", currentPrice.getPriceId());
         return ResponseEntity.ok(this.priceResponseMapper.toResponse(currentPrice));
     }
 }

@@ -20,7 +20,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
 ########################
 management:
   endpoints:
@@ -31,4 +31,4 @@ management:
 logging:
   level:
     root: INFO
-    com.springboot.test: DEBUG
+    com.springboot.test: INFO
