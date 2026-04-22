@@ -16,3 +16,7 @@
 - First draft at a GET endpoint to return current price for a given brand, product and date
 - Endpoint tested by hand, added some debug logs
 - Increased log level to INFO, hidden SQL logs
+
+## Phase 4 - Implement Controller Tests
+- Fixed testing dependencies
+- Implemented Controller tests
