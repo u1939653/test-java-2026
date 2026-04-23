@@ -20,3 +20,7 @@
 ## Phase 4 - Implement Controller Tests
 - Fixed testing dependencies
 - Implemented Controller tests
+
+# Version 1.0.0
+## Phase 5 - Documentation
+- Added project info in README
