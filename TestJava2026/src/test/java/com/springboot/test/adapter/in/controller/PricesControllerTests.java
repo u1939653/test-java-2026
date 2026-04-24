@@ -39,9 +39,7 @@ public class PricesControllerTests {
     private void getPriceAtDate(Integer brandId, Integer productId, LocalDateTime date, Double expectedPrice) throws Exception {
         this.mockMvc
             .perform(
-                get("/prices")
-                    .param("brandId", brandId.toString())
-                    .param("productId", productId.toString())
+                get("/prices/{brandId}/{productId}", brandId, productId)
                     .param("date", date.toString())
             )
             .andExpect(status().isOk())

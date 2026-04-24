@@ -109,7 +109,7 @@ Log in using the username and password defined in `application.yml` (spring data
 
 #### Sample request:
 ```
-http://localhost:8080/test-java-2026/api/prices?brandId=1&productId=35455&date=2020-06-14T18:00:00
+http://localhost:8080/test-java-2026/api/prices/1/35455?date=2020-06-14T18:00:00
 ```
 
 #### Sample output:

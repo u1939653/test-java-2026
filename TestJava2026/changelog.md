@@ -31,3 +31,4 @@
 - Increased efficiency of `GET /prices` endpoint by adding indexes to the database
 - Solving SOLID principle issues
 - Added files to .gitignore
+- GET endpoint brandId+productId inputs changed from QueryParameters to PathVariables (more RESTful) 

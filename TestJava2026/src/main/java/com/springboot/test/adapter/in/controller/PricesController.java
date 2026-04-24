@@ -7,6 +7,7 @@ import com.springboot.test.domain.model.Prices;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
@@ -24,8 +25,8 @@ public class PricesController {
         this.priceResponseMapper = priceResponseMapper;
     }
 
-    @GetMapping("/prices")
-    public ResponseEntity<PriceResponse> getPriceAtDate(@RequestParam Integer brandId, @RequestParam Integer productId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date ) {
+    @GetMapping("/prices/{brandId}/{productId}")
+    public ResponseEntity<PriceResponse> getPriceAtDate(@PathVariable Integer brandId, @PathVariable Integer productId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date ) {
         Prices currentPrice = this.getBrandProductPriceUseCase.getBrandProductPrice(brandId, productId, date);
         return ResponseEntity.ok(this.priceResponseMapper.toResponse(currentPrice));
     }
