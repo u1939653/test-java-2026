@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Repository
 public interface PricesRepository extends JpaRepository<PricesEntity, Integer> {
@@ -15,6 +14,8 @@ public interface PricesRepository extends JpaRepository<PricesEntity, Integer> {
         "WHERE " +
             ":brandId = p.brandId AND" +
             ":productId = p.productId AND " +
-            "(:date BETWEEN p.startDate AND p.endDate)")
-    List<PricesEntity> findByBrandIdAndProductIdAndDate(Integer brandId, Integer productId, LocalDateTime date);
+            "(:date BETWEEN p.startDate AND p.endDate) " +
+        "ORDER BY p.priority DESC " +
+        "LIMIT 1")
+    PricesEntity findOneByBrandIdAndProductIdAndDate(Integer brandId, Integer productId, LocalDateTime date);
 }

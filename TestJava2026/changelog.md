@@ -24,3 +24,9 @@
 # Version 1.0.0
 ## Phase 5 - Documentation
 - Added project info in README
+
+# Version 1.0.1
+## Phase 6 - Fixes and suggestions
+- Increased efficiency of `GET /prices` endpoint by refactoring query and deleting excess code
+- Increased efficiency of `GET /prices` endpoint by adding indexes to the database
+- Solving SOLID principle issues
