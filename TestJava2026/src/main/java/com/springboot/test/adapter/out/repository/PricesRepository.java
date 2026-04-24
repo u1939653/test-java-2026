@@ -17,6 +17,6 @@ public interface PricesRepository extends JpaRepository<PricesEntity, Integer> {
             ":productId = p.productId AND " +
             "(:date BETWEEN p.startDate AND p.endDate) " +
         "ORDER BY p.priority DESC " +
-        "LIMIT 1")
+        "FETCH FIRST 1 ROW ONLY")
     Optional<PricesEntity> findOneByBrandIdAndProductIdAndDate(Integer brandId, Integer productId, LocalDateTime date);
 }
