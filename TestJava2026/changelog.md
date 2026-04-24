@@ -4,6 +4,7 @@
 ### Added
 - Indexes added to the database for improved query performance
 - Added files to `.gitignore`
+- Added empty result test
 
 ### Changed
 - Increased efficiency of `GET /prices` endpoint by refactoring query and deleting excess code

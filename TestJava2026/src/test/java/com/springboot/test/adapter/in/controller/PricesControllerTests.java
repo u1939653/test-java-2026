@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,6 +37,11 @@ public class PricesControllerTests {
         this.getPriceAtDate( 1, 35455, LocalDateTime.of(2020, 6, 16, 21, 0, 0), 38.95 );
     }
 
+    @Test
+    void getPriceAtDate_2040_06_16_2100() throws Exception {
+        this.getPriceAtDateExpectingNothing( 1, 35455, LocalDateTime.of(2040, 6, 16, 21, 0, 0) );
+    }
+
     private void getPriceAtDate(Integer brandId, Integer productId, LocalDateTime date, Double expectedPrice) throws Exception {
         this.mockMvc
             .perform(
@@ -46,5 +52,15 @@ public class PricesControllerTests {
             .andExpect(jsonPath("$.brandId").value( brandId ))
             .andExpect(jsonPath("$.productId").value( productId ))
             .andExpect(jsonPath("$.price").value( expectedPrice ));
+    }
+
+    private void getPriceAtDateExpectingNothing(Integer brandId, Integer productId, LocalDateTime date) throws Exception {
+        this.mockMvc
+                .perform(
+                        get("/prices/{brandId}/{productId}", brandId, productId)
+                                .param("date", date.toString())
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().string(""));
     }
 }
