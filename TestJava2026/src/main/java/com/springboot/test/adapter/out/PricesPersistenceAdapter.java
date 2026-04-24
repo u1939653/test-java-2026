@@ -8,6 +8,7 @@ import com.springboot.test.domain.model.Prices;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Component
 public class PricesPersistenceAdapter implements ReadPricesPort {
@@ -19,7 +20,8 @@ public class PricesPersistenceAdapter implements ReadPricesPort {
 
     @Override
     public Prices findBrandProductPriceByDate(Integer brandId, Integer productId, LocalDateTime date) {
-        return toDomain( this.pricesRepository.findOneByBrandIdAndProductIdAndDate(brandId, productId, date) );
+        Optional<PricesEntity> optPrices = pricesRepository.findOneByBrandIdAndProductIdAndDate(brandId, productId, date);
+        return optPrices.isPresent()? toDomain( optPrices.get() ) : null;
     }
 
     private Prices toDomain( PricesEntity pricesEntity ) {

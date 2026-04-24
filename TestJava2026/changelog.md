@@ -30,3 +30,4 @@
 - Increased efficiency of `GET /prices` endpoint by refactoring query and deleting excess code
 - Increased efficiency of `GET /prices` endpoint by adding indexes to the database
 - Solving SOLID principle issues
+- Added files to .gitignore

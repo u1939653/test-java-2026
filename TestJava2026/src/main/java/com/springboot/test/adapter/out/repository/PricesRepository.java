@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Repository
 public interface PricesRepository extends JpaRepository<PricesEntity, Integer> {
@@ -17,5 +18,5 @@ public interface PricesRepository extends JpaRepository<PricesEntity, Integer> {
             "(:date BETWEEN p.startDate AND p.endDate) " +
         "ORDER BY p.priority DESC " +
         "LIMIT 1")
-    PricesEntity findOneByBrandIdAndProductIdAndDate(Integer brandId, Integer productId, LocalDateTime date);
+    Optional<PricesEntity> findOneByBrandIdAndProductIdAndDate(Integer brandId, Integer productId, LocalDateTime date);
 }
